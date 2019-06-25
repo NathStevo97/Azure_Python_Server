@@ -21,7 +21,7 @@ az network nsg create --resource-group AzureProject --name MyNetworkSecurityGrou
 az network nsg rule create --name SSH --destination-port-ranges 22 --nsg-name MyNetworkSecurityGroup --priority 400
 
 #create public IP
-az network public-ip create --resource-group AzureProject --name AzureProjectIP --dns-name AzureProject123456789
+az network public-ip create --resource-group AzureProject --name AzureProjectIP --dns-name azureproject123456789
 
 #create network interface with security group and IP address
 az network nic create --resource-group AzureProject --name AzureProjectNetworkInterface --vnet-name MyVirtualNetwork --subnet MySubnet --network-security-group MyNetworkSecurityGroup --public-ip-address AzureProjectIP
