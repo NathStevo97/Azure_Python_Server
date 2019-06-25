@@ -24,10 +24,10 @@ for vm in ${vmusers}; do
 	az network nsg rule create --name SSH --destination-port-ranges 22 --nsg-name $vm-NSG --priority 400
 
 	#create public IP
-	az network public-ip create --resource-group AzureProject --name $vm-IP --dns-name $vm-123456789
+	az network public-ip create --resource-group $vm-group --name $vm-IP --dns-name $vm-123456789
 
 	#create network interface card for corresponding user
-	az network nic create --resource-group $vm-group --name $vm-nic --vnet-name MyVirtualNetwork --subnet MySubnet --network-security-group MyNetworkSecurityGroup --public-ip-address AzureProjectIP
+	az network nic create --resource-group $vm-group --name $vm-nic --vnet-name $vm-VirtualNetwork--subnet $vm-Subnet --network-security-group $vm-NSG --public-ip-address $vm-IP
 	#create virtual machine for corresponding user
 	az vm create --resource-group $vm-group --name $vm --image UbuntuLTS --nics $vm-nic --admin-username "nstephenson" --size Standard_F1 --generate-ssh-keys
 done
