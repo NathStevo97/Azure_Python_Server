@@ -27,10 +27,10 @@ az network public-ip create --resource-group AzureProject --name AzureProjectIP 
 az network nic create --resource-group AzureProject --name AzureProjectNetworkInterface --vnet-name MyVirtualNetwork --subnet MySubnet --network-security-group MyNetworkSecurityGroup --public-ip-address AzureProjectIP
 
 #create virtual machines
-define virtual machine usernames in a variable to save coding space
+#define virtual machine usernames in a variable to save coding space
 vmusers="jenkins jenkinsbuild python"
 
 #writing virtual machine creation into for loop
 for vm in ${vmusers}; do
-	az vm create --resource-group AzureProject --name $vm --image UbuntuLTS --admin-username "nstephenson" --size Standard_F1
+	az vm create --resource-group AzureProject --name $vm --image UbuntuLTS --admin-username "nstephenson" --size Standard_F1 --generate-ssh-keys
 done
