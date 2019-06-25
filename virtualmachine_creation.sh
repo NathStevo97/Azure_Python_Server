@@ -27,7 +27,7 @@ for vm in ${vmusers}; do
 	az network public-ip create --resource-group AzureProject --name $vm-IP --dns-name $vm-123456789
 
 	#create network interface card for corresponding user
-	az network nic create --resource-group AzureProject --name $vm-nic --vnet-name MyVirtualNetwork --subnet MySubnet --network-security-group MyNetworkSecurityGroup --public-ip-address AzureProjectIP
+	az network nic create --resource-group $vm-group --name $vm-nic --vnet-name MyVirtualNetwork --subnet MySubnet --network-security-group MyNetworkSecurityGroup --public-ip-address AzureProjectIP
 	#create virtual machine for corresponding user
-	az vm create --resource-group AzureProject --name $vm --image UbuntuLTS --nics $vm-nic --admin-username "nstephenson" --size Standard_F1 --generate-ssh-keys
+	az vm create --resource-group $vm-group --name $vm --image UbuntuLTS --nics $vm-nic --admin-username "nstephenson" --size Standard_F1 --generate-ssh-keys
 done
