@@ -20,7 +20,7 @@ for vm in ${vmusers}; do
 	az network nsg create --resource-group AzureProject --name $vm-NSG
 
 	#create nsg rule to allow for ssh port
-	az network nsg rule create --name SSH --destination-port-ranges 22 --nsg-name $vm-NSG --priority 400
+	az network nsg rule create --resource-group --name AzureProject --name SSH --destination-port-ranges 22 --nsg-name $vm-NSG --priority 400
 
 	#create public IP
 	az network public-ip create --resource-group AzureProject --name $vm-IP --dns-name $vm-123456789
