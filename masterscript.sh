@@ -15,3 +15,18 @@ az network vnet create --resource-group AzureProject --name AzureProject-Virtual
 #for each of the virtual machine names defined, create a corresponding vm with a unique nsg that allows ssh ports
 #each VM should have its own unique public and private IP address and NIC
 for vm in ${vmusers}; do
+        #create network security group (nsg) for each machine
+        az network nsg create --resource-group AzureProject --name $vm-NSG
+        
+        #create nsg rule to allow for ssh port forwarding
+        az network nsg rule create -- resource-group AzureProject --name SSH --destinaton-port-ranges 22 --nsg-name $vm0NSG --priority 400
+        
+        #create public IP for each VM
+        az network public-ip create --resource-group AzureProject --name $vm-IP --dns-name $vm-123456789
+        
+        #create network interface card (NIC)
+        az network nic create --resource-group AzureProject --name $vm-nic --vnet-name AzureProject-VirtualNetwork --subnet MySubnet --network-security-group $vm-NSG --public-ip-address $vm-IP
+        
+        #create the virtual machine
+        az vm create --resource-group AzureProject --name $vm --image UbuntuLTS --nics $vm-nic --admin-username "nstephenson" --size Standard_F1 --generate-ssh-keys
+ done
