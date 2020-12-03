@@ -1,8 +1,8 @@
-#script to fully automate the creation of a jenkins server, jenkins build slave and a static python server
+#script to fully automate the creation of a jenkins server, jenkins build slave and a static python server in Microsoft Azure
 #done by first creating three virtual machines in an ubuntu server image
-
+#
 #!/bin/sh
-#create virtual machines and corresponding architecture -----------------------------------------------------
+#create virtual machines and corresponding architecture
 #define names for three virtual machines to be created (to be used in for loop for effciency)
 vmusers="jenkins jenkinsbuild python"
 
